@@ -73,7 +73,12 @@ export default function SigninForm() {
           }`}
         >
           <label htmlFor="email">Email</label>
-          <input type="text" id="email" {...register('email')} />
+          <input
+            type="text"
+            id="email"
+            {...register('email')}
+            autoComplete="on"
+          />
           {errors.email && <p>{errors.email.message}</p>}
         </div>
         <div
@@ -85,6 +90,7 @@ export default function SigninForm() {
           <input
             type={showPassword ? 'text' : 'password'}
             id="password"
+            autoComplete="on"
             {...register('password')}
           />
           <button

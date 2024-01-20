@@ -40,7 +40,8 @@
 
   input[type='text'],
   input[type='password'],
-  input[type='email'] {
+  input[type='email'],
+  select {
     outline: transparent;
     padding: 0 15px;
     border-radius: 5px;
@@ -91,11 +92,13 @@
   }
 
   input,
-  input:not(input[type='submit']) {
+  input:not(input[type='submit']),
+  select {
     width: 100%;
   }
 
-  input {
+  input,
+  select {
     height: 40px;
   }
 }

@@ -84,7 +84,12 @@ export default function SignupForm() {
           }`}
         >
           <label htmlFor="email">Email</label>
-          <input type="text" id="email" {...register('email')} />
+          <input
+            type="email"
+            id="email"
+            autoComplete="on"
+            {...register('email')}
+          />
           {errors.email && <p>{errors.email.message}</p>}
         </div>
 
@@ -97,6 +102,7 @@ export default function SignupForm() {
           <input
             type="text"
             id="username"
+            autoComplete="on"
             {...register('username')}
           />
           {errors.username && <p>{errors.username.message}</p>}

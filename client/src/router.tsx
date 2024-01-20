@@ -102,15 +102,27 @@ export const router = createBrowserRouter([
           },
           {
             path: 'groupes-rejoints',
-            element: <JoinedGroupsPage />,
+            element: (
+              <ProtectedRoute>
+                <JoinedGroupsPage />
+              </ProtectedRoute>
+            ),
           },
           {
             path: 'mes-groupes',
-            element: <MyGroupPage />,
+            element: (
+              <ProtectedRoute>
+                <MyGroupPage />
+              </ProtectedRoute>
+            ),
           },
           {
             path: 'creer-un-groupe',
-            element: <CreateGroupPage />,
+            element: (
+              <ProtectedRoute>
+                <CreateGroupPage />
+              </ProtectedRoute>
+            ),
           },
         ],
       },
