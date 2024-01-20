@@ -27,15 +27,22 @@ export default function Header() {
           <li>
             <NavLink to={''}>Accueil</NavLink>
           </li>
+          <li>
+            <NavLink to={'/groupes'}>Groupes</NavLink>
+          </li>
+          <li>
+            <NavLink to={'/sorties'}>Sorties</NavLink>
+          </li>
         </ul>
+
         <div>
           {user ? (
             <>
-              <NavLink to={'profil'}>
+              <NavLink to={'/profil'}>
                 <img
                   className="profile-img"
                   src={`${user.avatar ? user.avatar : iconNoAvatar}`}
-                  alt=""
+                  alt="photo de profil"
                 />
               </NavLink>
               <button

@@ -1,18 +1,18 @@
 import { useForm } from 'react-hook-form';
-import { UserSignupInterface } from '../../../types';
+import { UserSignupInterface } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { signupValidation } from '../../../validations';
+import { signupValidation } from '@/validations';
 import {
   usePostAvatarMutation,
   useSignupMutation,
 } from '../authApiSlice';
-import { useAppDispatch } from '../../../app/hooks';
+import { useAppDispatch } from '@/app/hooks';
 import { setCredentials } from '../authSlice';
 import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import iconHidePassword from '../../../assets/images/icon-hide-password.svg';
-import iconShowPassword from '../../../assets/images/icon-show-password.svg';
+import iconHidePassword from '@/assets/images/icon-hide-password.svg';
+import iconShowPassword from '@/assets/images/icon-show-password.svg';
 
 import './styles.scss';
 

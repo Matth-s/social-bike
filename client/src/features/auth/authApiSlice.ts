@@ -1,8 +1,12 @@
 import { apiSlice } from '../../app/api/apiSlice';
-import { UserInterface, UserSigninInterface } from '../../types';
+import {
+  UserInterface,
+  UserSigninInterface,
+  userResponseInterface,
+} from '../../types';
 
 export const authApiSlice = apiSlice.injectEndpoints({
-  endpoints: (builder: any) => ({
+  endpoints: (builder) => ({
     signin: builder.mutation({
       query: (credentials: UserSigninInterface) => ({
         url: '/user/signin',
@@ -68,12 +72,18 @@ export const authApiSlice = apiSlice.injectEndpoints({
       }),
     }),
 
-    getCurrentUser: builder.query({
+    getCurrentUser: builder.mutation({
       query: () => ({
         url: '/user/',
-        method: 'GET',
+        method: 'POST',
+        body: {},
       }),
-      transformResponse: (response: any) => response.data,
+      transformResponse: (response: {
+        data: {
+          user: userResponseInterface;
+          token: string;
+        };
+      }) => response.data,
     }),
   }),
 });
@@ -83,5 +93,5 @@ export const {
   useSignupMutation,
   usePostAvatarMutation,
   useSignoutMutation,
-  useGetCurrentUserQuery,
+  useGetCurrentUserMutation,
 } = authApiSlice;
