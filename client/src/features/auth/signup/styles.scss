@@ -1,0 +1,19 @@
+.signup-container {
+  margin: auto;
+  width: fit-content;
+
+  form {
+    width: 350px;
+  }
+
+  .image-preview {
+    display: block;
+    margin: auto;
+    border-radius: 100%;
+  }
+
+  .delete-avatar {
+    display: block;
+    margin-left: auto;
+  }
+}
