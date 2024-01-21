@@ -29,20 +29,17 @@ const refreshToken = async (token) => {
       return null;
     }
   } catch (error) {
-    throw new Error('Erreur lors de la vérification du token');
+    throw error;
   }
 };
 
 const checkToken = (token) => {
-  return new Promise((resolve, reject) => {
-    jwt.verify(token, process.env.JWT_SECRET, (error, decoded) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve(decoded);
-      }
-    });
-  });
+  try {
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+    return decodedToken;
+  } catch (err) {
+    throw err;
+  }
 };
 
 module.exports = {

@@ -10,18 +10,21 @@ const userVerificationToken = async (req, res, next) => {
 
   const token = authorization.split(' ')[1];
 
+  if (!token) {
+    res.clearCookie('jwt');
+    return res.status(401).json({ message: 'Non autorisé' });
+  }
+
   try {
-    const validToken = checkToken(token, res);
+    const validToken = checkToken(token);
 
     if (validToken) {
       return next();
     }
 
-    return res.status(403).json({ message: 'Token expiré' });
+    res.status(403).json({ message: 'Token expiré' });
   } catch (error) {
-    console.error(error);
-    res.clearCookie('jwt');
-    return res.status(403).json({ message: 'Non autorisé' });
+    res.status(403).json({ message: 'Non autorisé' });
   }
 };
 

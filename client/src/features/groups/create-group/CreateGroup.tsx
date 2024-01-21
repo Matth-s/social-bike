@@ -3,11 +3,13 @@ import { selectCurrentUser } from '@/features/auth/authSlice';
 import { groupRideInterface } from '@/types/group';
 import { useForm } from 'react-hook-form';
 import { Navigate } from 'react-router-dom';
+import { useCreateGroupMutation } from '../groupsApiSlice';
 
 import './styles.scss';
 
 export default function CreateGroup() {
   const user = useAppSelector(selectCurrentUser);
+  const [postGroup, { isLoading }] = useCreateGroupMutation();
 
   if (!user) {
     return (
@@ -18,28 +20,43 @@ export default function CreateGroup() {
   }
 
   const values: groupRideInterface = {
+    id: '',
     name: '',
     owner: user.username,
     ownerId: user.id,
     members: [],
     chat: [],
     rides: [],
-    city: '',
+    city: 'Pau',
     type: 'ouvert',
     description: '',
     sport: [],
+    createdAt: 0,
   };
 
   const {
     handleSubmit,
     register,
     formState: { errors },
+    setError,
+    reset,
   } = useForm({
     values,
   });
 
   async function mySubmit(group: groupRideInterface) {
-    console.log(group);
+    await postGroup(group)
+      .unwrap()
+      .then((response) => {
+        console.log(response);
+        reset();
+      })
+      .catch((error) => {
+        setError('root', {
+          type: 'server',
+          message: error,
+        });
+      });
   }
 
   return (
@@ -74,8 +91,12 @@ export default function CreateGroup() {
           </select>
         </div>
 
+        {errors.root?.message && (
+          <p className="root-error">{errors.root.message}</p>
+        )}
+
         <input
-          className="btn btn__purple"
+          className={`btn btn__purple ${isLoading ? 'loading' : ''}`}
           type="submit"
           value="Créer"
         />

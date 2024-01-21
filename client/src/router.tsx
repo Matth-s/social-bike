@@ -29,7 +29,12 @@ const NotFoundPage = lazy(
 const GroupsPage = lazy(
   () => import('@/pages/groups-page/GroupsPage')
 );
-
+const GroupsListPage = lazy(
+  () =>
+    import(
+      '@/pages/groups-page/pages/groups-list-page/GroupsListPage'
+    )
+);
 const JoinedGroupsPage = lazy(
   () =>
     import(
@@ -98,7 +103,7 @@ export const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <>groupe page</>,
+            element: <GroupsListPage />,
           },
           {
             path: 'groupes-rejoints',

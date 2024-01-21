@@ -10,6 +10,7 @@ const port = process.env.PORT;
 /* routes */
 const userRoutes = require('./routes/user.routes');
 const imageRoutes = require('./routes/image.routes');
+const groupRoutes = require('./routes/group.routes');
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use(
 
 app.use('/api/user', userRoutes);
 app.use('/api/image', imageRoutes);
+app.use('/api/group', groupRoutes);
 
 app.listen(port, () => {
   console.log(`Le serveur écoute sur le port ${port}`);
