@@ -6,7 +6,9 @@ export default function Navigation() {
   return (
     <ul className="rides-navigation d-flex">
       <li>
-        <NavLink to={''}>Sorties</NavLink>
+        <NavLink to={''} end>
+          Sorties
+        </NavLink>
       </li>
 
       <li>

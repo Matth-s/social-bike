@@ -5,6 +5,8 @@ import { useForm } from 'react-hook-form';
 import { Navigate } from 'react-router-dom';
 import { useCreateGroupMutation } from '../groupsApiSlice';
 
+import SelectSport from '@/components/select-sport/SelectSport';
+
 import './styles.scss';
 
 export default function CreateGroup() {
@@ -30,8 +32,9 @@ export default function CreateGroup() {
     city: 'Pau',
     type: 'ouvert',
     description: '',
-    sport: [],
+    sport: '',
     createdAt: 0,
+    waitingList: [],
   };
 
   const {
@@ -40,6 +43,8 @@ export default function CreateGroup() {
     formState: { errors },
     setError,
     reset,
+    watch,
+    setValue,
   } = useForm({
     values,
   });
@@ -89,6 +94,13 @@ export default function CreateGroup() {
             <option value="invitation">Sur invitation</option>
             <option value="ferme">Fermé</option>
           </select>
+        </div>
+
+        <div className="form-group">
+          <SelectSport
+            setValue={setValue}
+            sportSelected={watch('sport')}
+          />
         </div>
 
         {errors.root?.message && (

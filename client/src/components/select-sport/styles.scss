@@ -1,0 +1,43 @@
+.select-sport-list {
+  width: 100%;
+
+  .label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 0 5px 0 20px;
+    height: 40px;
+    background-color: var(--color-grey-three);
+    border-radius: 5px;
+  }
+
+  div {
+    max-height: 200px;
+    overflow-y: scroll;
+    box-shadow: 0px 10px 40px -7px rgba(55, 63, 104, 0.35);
+    margin-bottom: 20px;
+    border-radius: 10px;
+
+    li:not(:first-child),
+    li:not(:last-child) {
+      border-top: 1px solid rgba($color: #3a4374, $alpha: 0.15);
+      border-bottom: 1px solid rgba($color: #3a4374, $alpha: 0.15);
+    }
+
+    img {
+      height: 20px;
+    }
+
+    li {
+      display: flex;
+      gap: 20px;
+      padding: 10px 20px;
+      z-index: 1;
+    }
+
+    p {
+      margin-right: auto;
+    }
+  }
+}

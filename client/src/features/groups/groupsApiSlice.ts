@@ -1,11 +1,19 @@
 import { apiSlice } from '@/app/api/apiSlice';
-import { groupRideInterface } from '@/types/group';
+import { groupRideInterface } from '@/types';
 
 export const GroupsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getGroups: builder.query({
-      query: ({ limit, name }: { limit: number; name: string }) => ({
-        url: `/group?limit=${limit}&name=${name}`,
+      query: ({
+        limit,
+        name,
+        filtre,
+      }: {
+        limit: number;
+        name: string;
+        filtre: string;
+      }) => ({
+        url: `/group?filtre=${filtre}&name=${name}&limit=${limit}`,
         method: 'GET',
       }),
       transformResponse: (reponse: {
@@ -14,6 +22,41 @@ export const GroupsApiSlice = apiSlice.injectEndpoints({
         };
       }) => {
         return reponse.data.groups;
+      },
+    }),
+
+    getGroupsJoined: builder.query({
+      query: ({
+        limit,
+        name,
+        userId,
+        filtre,
+      }: {
+        limit: number;
+        name: string;
+        userId: string;
+        filtre: string;
+      }) => ({
+        url: `group/joined-groups?filtre=${filtre}&name=${name}&limit=${limit}&userId=${userId}`,
+        method: 'GET',
+      }),
+      transformResponse: (response: {
+        data: { groups: groupRideInterface[] };
+      }) => {
+        return response.data.groups;
+      },
+    }),
+
+    getGroupsCreated: builder.query({
+      query: (userId: string) => ({
+        url: `/group/groups-created?userId=${userId}&limit=${20}`,
+        method: 'GET',
+      }),
+      transformResponse: (response: {
+        data: { groups: groupRideInterface[] };
+        message: string;
+      }) => {
+        return response.data.groups;
       },
     }),
 
@@ -40,8 +83,54 @@ export const GroupsApiSlice = apiSlice.injectEndpoints({
         return error.data.message;
       },
     }),
+
+    askToJoinGroup: builder.mutation({
+      query: ({
+        user,
+        groupId,
+      }: {
+        user: {
+          username: string;
+          id: string;
+        };
+        groupId: string;
+      }) => ({
+        url: '/group/ask-to-join',
+        method: 'POST',
+        body: {
+          groupId,
+          user,
+        },
+      }),
+    }),
+
+    joinGroup: builder.mutation({
+      query: ({
+        user,
+        groupId,
+      }: {
+        user: {
+          username: string;
+          id: string;
+        };
+        groupId: string;
+      }) => ({
+        url: '/group/join',
+        method: 'POST',
+        body: {
+          groupId,
+          user,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetGroupsQuery, useCreateGroupMutation } =
-  GroupsApiSlice;
+export const {
+  useGetGroupsQuery,
+  useCreateGroupMutation,
+  useAskToJoinGroupMutation,
+  useJoinGroupMutation,
+  useGetGroupsJoinedQuery,
+  useGetGroupsCreatedQuery,
+} = GroupsApiSlice;

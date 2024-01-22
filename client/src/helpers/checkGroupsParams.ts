@@ -24,7 +24,7 @@ export const checkGroupsParams = (object: {
       params.name = '';
       break;
     default:
-      params.name = name;
+      params.name = name.replaceAll('-', ' ');
       break;
   }
 

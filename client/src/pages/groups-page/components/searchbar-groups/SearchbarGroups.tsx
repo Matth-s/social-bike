@@ -9,7 +9,7 @@ type Props = {
 };
 
 export default function SearchbarGroups({ params }: Props) {
-  const [setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
 
   const { limit, name, filtre } = params;
 
@@ -30,11 +30,10 @@ export default function SearchbarGroups({ params }: Props) {
       formParams.name !== ''
         ? formParams.name.replaceAll(' ', '-')
         : formParams.name;
-    const url = Object.entries(formParams)
-      .map(([key, val]) => `${key}=${val}`)
-      .join('&');
 
-    console.log(url);
+    const url = new URLSearchParams(formParams as any).toString();
+
+    setSearchParams(url);
   }
 
   return (
@@ -51,14 +50,13 @@ export default function SearchbarGroups({ params }: Props) {
 
         <input
           type="text"
-          id=""
           placeholder={` ${
             filter === 'groupe' ? 'Nom du groupe' : 'Nom de la ville'
           }`}
           {...register('name')}
         />
 
-        <input type="submit" value={'Envoyer'} />
+        <input type="submit" value={'Rechercher'} />
       </form>
     </div>
   );

@@ -6,7 +6,9 @@ export default function Navigation() {
   return (
     <ul className="groups-navigation d-flex">
       <li>
-        <NavLink to={''}>Groupes</NavLink>
+        <NavLink to={''} end>
+          Groupes
+        </NavLink>
       </li>
 
       <li>

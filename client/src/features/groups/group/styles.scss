@@ -1,0 +1,28 @@
+.group-container {
+  padding: 40px;
+  background-color: var(--color-white);
+  border-radius: 10px;
+  width: 100%;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  ul {
+    margin-bottom: 20px;
+
+    li:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+
+  button {
+    display: block;
+    height: 40px;
+  }
+}
+
+.group-container:not(:last-child) {
+  margin-bottom: 20px;
+}

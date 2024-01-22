@@ -14,8 +14,18 @@ const groupSchema = mongoose.Schema({
     required: true,
   },
   description: { type: String, default: '' },
-  sport: { type: Array, default: '' },
+  sport: { type: String, default: '' },
   createdAt: { type: Number },
+  waitingList: {
+    type: Array,
+    default: [],
+    items: {
+      type: {
+        id: String,
+        username: String,
+      },
+    },
+  },
 });
 
 const Group = mongoose.model('Group', groupSchema);

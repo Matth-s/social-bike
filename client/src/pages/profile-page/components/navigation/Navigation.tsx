@@ -5,7 +5,7 @@ import './styles.scss';
 export default function Navigation() {
   return (
     <ul className="profil-navigation">
-      <NavLink to={''}>
+      <NavLink to={''} end>
         <li>Mon profil</li>
       </NavLink>
       <NavLink to={'abonnements'}>

@@ -20,3 +20,18 @@ input[type='submit'] {
   font-size: 14px;
   font-weight: 700;
 }
+
+a {
+  color: #3a4374;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -0.25px;
+}
+
+.active {
+  color: #3a4374;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.25px;
+  text-decoration: underline;
+}

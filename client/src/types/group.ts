@@ -12,12 +12,23 @@ export interface groupRideInterface {
   name: string;
   owner: string;
   ownerId: string;
-  members: string[] | [];
-  chat: messageInterface[] | [];
+  members: memberInterface[] | [];
+  chat: string[] | [];
   rides: rideInterface[] | [];
   city: string;
-  type: 'ouvert' | 'invation' | 'ferme';
+  type: 'ouvert' | 'invitation' | 'ferme';
   description: string;
-  sport: string[];
+  sport: string;
   createdAt: number;
+  waitingList: waitingListInterface[] | [];
+}
+
+interface waitingListInterface {
+  id: string;
+  username: string;
+}
+
+interface memberInterface {
+  id: string;
+  username: string;
 }

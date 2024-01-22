@@ -1,7 +1,15 @@
 .d-flex {
   display: flex;
 
+  &__column {
+    flex-direction: column;
+  }
+
   &__alignCenter {
     align-items: center;
+  }
+
+  &__space-aroud {
+    justify-content: space-around;
   }
 }
